@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .bg-gradient-ocean {
+    @apply bg-gradient-to-r from-blue-600 to-cyan-500;
+  }
+
+  .bg-gradient-earth {
+    @apply bg-gradient-to-r from-green-600 to-emerald-500;
+  }
+
+  .bg-gradient-hero {
+    @apply bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-green-700/90 backdrop-blur-sm;
+  }
+
+  .shadow-card {
+    @apply shadow-lg shadow-blue-900/10;
+  }
+
+  .shadow-hover {
+    @apply shadow-xl shadow-blue-900/20;
+  }
+}
+
+@layer base {
+  body {
+    @apply text-white;
+  }
+}
