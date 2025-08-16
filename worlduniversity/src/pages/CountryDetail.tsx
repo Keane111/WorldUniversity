@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import LoadingSpinner from "@/components/ui/loading-spinner";
 import Layout from "@/components/layout/Layout";
-import { countryApi } from "@/services/countryApi";
 import type { Country } from "@/types/country";
 import { 
   ArrowLeft, MapPin, Users, Globe2, Landmark, 
@@ -17,27 +16,28 @@ const CountryDetail = () => {
   const { name } = useParams<{ name: string }>();
   const [country, setCountry] = useState<Country | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
-    const fetchCountry = async () => {
+    const fetchCountryDetails = async () => {
       if (!name) return;
 
       try {
         setLoading(true);
-        const data = await countryApi.getCountryByName(name);
-        if (data && data.length > 0) {
-          setCountry(data[0] ?? null);
-        } else {
-          setCountry(null);
-          toast({
-            title: "Country not found",
-            description: "The requested country could not be found.",
-            variant: "destructive",
-          });
+        setError(null);
+        const countryName = (name as string).replace(/-/g, " ");
+        const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=false`);
+
+        if (!response.ok) {
+          throw new Error("Country not found");
         }
+
+        const data = await response.json();
+        setCountry(data[0]);
       } catch (error) {
-        console.error("Error fetching country:", error);
+        console.error("Error fetching country details:", error);
+        setError("Failed to load country details");
         toast({
           title: "Error",
           description: "Failed to fetch country information. Please try again.",
@@ -48,7 +48,7 @@ const CountryDetail = () => {
       }
     };
 
-    fetchCountry();
+    fetchCountryDetails();
   }, [name, toast]);
 
   if (loading) {
@@ -58,6 +58,30 @@ const CountryDetail = () => {
           <div className="flex justify-center py-32">
             <LoadingSpinner size="lg" />
           </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!country && error) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <Card className="text-center py-16">
+            <CardContent>
+              <Globe2 className="h-16 w-16 text-destructive mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Error Loading Country</h3>
+              <p className="text-muted-foreground mb-6">
+                {error}
+              </p>
+              <Link to="/">
+                <Button>
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Home
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
         </div>
       </Layout>
     );

@@ -7,7 +7,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import CountryCard from "@/components/country/CountryCard";
 import LoadingSpinner from "@/components/ui/loading-spinner";
 import Layout from "@/components/layout/Layout";
-import { countryApi } from "@/services/countryApi";
 import type { Country } from "@/types/country";
 import { Filter, RotateCcw, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -16,16 +15,20 @@ const CountryFilter = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedRegion, setSelectedRegion] = useState<string>("all");
+  const [selectedSubregion, setSelectedSubregion] = useState<string>("all");
   const [selectedLanguage, setSelectedLanguage] = useState<string>("all");
   const [independentOnly, setIndependentOnly] = useState<boolean>(false);
   const [unMemberOnly, setUnMemberOnly] = useState<boolean>(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    const fetchCountries = async () => {
+    const fetchAllCountries = async () => {
       try {
         setLoading(true);
-        const data = await countryApi.getAllCountries();
+        const response = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,flags,population,region,subregion,capital,languages,independent,cca3"
+        );
+        const data = await response.json();
         setCountries(data);
       } catch (error) {
         console.error("Error fetching countries:", error);
@@ -39,12 +42,17 @@ const CountryFilter = () => {
       }
     };
 
-    fetchCountries();
+    fetchAllCountries();
   }, [toast]);
 
   const regions = useMemo(() => {
     const uniqueRegions = [...new Set(countries.map(country => country.region))];
     return uniqueRegions.sort();
+  }, [countries]);
+
+  const subregions = useMemo(() => {
+    const uniqueSubregions = [...new Set(countries.map(country => country.subregion).filter((subregion): subregion is string => Boolean(subregion)))];
+    return uniqueSubregions.sort();
   }, [countries]);
 
   const languages = useMemo(() => {
@@ -65,6 +73,10 @@ const CountryFilter = () => {
         return false;
       }
 
+      if (selectedSubregion !== "all" && country.subregion !== selectedSubregion) {
+        return false;
+      }
+
       if (selectedLanguage !== "all") {
         if (!country.languages || 
             !Object.values(country.languages).includes(selectedLanguage)) {
@@ -82,16 +94,18 @@ const CountryFilter = () => {
 
       return true;
     });
-  }, [countries, selectedRegion, selectedLanguage, independentOnly, unMemberOnly]);
+  }, [countries, selectedRegion, selectedSubregion, selectedLanguage, independentOnly, unMemberOnly]);
 
   const resetFilters = () => {
     setSelectedRegion("all");
+    setSelectedSubregion("all");
     setSelectedLanguage("all");
     setIndependentOnly(false);
     setUnMemberOnly(false);
   };
 
   const hasActiveFilters = selectedRegion !== "all" || 
+                          selectedSubregion !== "all" ||
                           selectedLanguage !== "all" || 
                           independentOnly || 
                           unMemberOnly;
@@ -147,6 +161,23 @@ const CountryFilter = () => {
                       {regions.map(region => (
                         <SelectItem key={region} value={region}>
                           {region}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="subregion">Subregion</Label>
+                  <Select value={selectedSubregion} onValueChange={setSelectedSubregion}>
+                    <SelectTrigger id="subregion">
+                      <SelectValue placeholder="Select subregion" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Subregions</SelectItem>
+                      {subregions.map(subregion => (
+                        <SelectItem key={subregion} value={subregion}>
+                          {subregion}
                         </SelectItem>
                       ))}
                     </SelectContent>

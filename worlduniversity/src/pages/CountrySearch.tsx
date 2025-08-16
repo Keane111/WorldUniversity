@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import CountryCard from "@/components/country/CountryCard";
 import LoadingSpinner from "@/components/ui/loading-spinner";
 import Layout from "@/components/layout/Layout";
-import { countryApi } from "@/services/countryApi";
 import type { Country } from "@/types/country";
 import { Search, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -19,7 +18,10 @@ const CountrySearch = () => {
     const fetchAllCountries = async () => {
       try {
         setLoading(true);
-        const data = await countryApi.getAllCountries();
+        const response = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,cca3",
+        );
+        const data = await response.json();
         setCountries(data);
       } catch (error) {
         console.error("Error fetching countries:", error);
@@ -41,12 +43,11 @@ const CountrySearch = () => {
 
     return countries.filter(country => 
       country.name.common.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      country.name.official.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (country.name.official && country.name.official.toLowerCase().includes(searchTerm.toLowerCase())) ||
       (country.capital && country.capital.some(cap => 
         cap.toLowerCase().includes(searchTerm.toLowerCase())
       )) ||
-      country.region.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (country.subregion && country.subregion.toLowerCase().includes(searchTerm.toLowerCase()))
+      country.region.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [countries, searchTerm]);
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { countryApi } from "@/services/countryApi";
 import type { Country } from "@/types/country";
 
 export function usePopularCountries() {
@@ -10,8 +9,11 @@ export function usePopularCountries() {
   useEffect(() => {
     const fetchPopularCountries = async () => {
       try {
-        const countries = await countryApi.getAllCountries();
-        const popular = countries.sort((a, b) => b.population - a.population).slice(0, 8);
+        const response = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,cca3"
+        );
+        const countries = await response.json();
+        const popular = countries.sort((a: Country, b: Country) => b.population - a.population).slice(0, 8);
         setPopularCountries(popular);
       } catch (error) {
         setError("Error fetching countries");
