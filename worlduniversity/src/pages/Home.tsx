@@ -65,10 +65,10 @@ const Home = () => {
         <section className="py-20 bg-background relative">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <StatCard icon={<Globe className="h-8 w-8 text-white" />} value={TOTAL_COUNTRIES} label="Countries" className="bg-gradient-ocean rounded-2xl" />
-              <StatCard icon={<MapPin className="h-8 w-8 text-white" />} value={TOTAL_POPULATION} label="Population" className="bg-gradient-earth rounded-2xl" />
-              <StatCard icon={<Users className="h-8 w-8 text-white" />} value={TOTAL_LANGUAGES} label="Languages" className="bg-primary rounded-2xl" />
-              <StatCard icon={<Award className="h-8 w-8 text-accent-foreground" />} value={TOTAL_CURRENCIES} label="Currencies" className="bg-accent rounded-2xl" />
+              <StatCard icon={<Globe className="h-8 w-8 text-white" />} value={TOTAL_COUNTRIES} label="Countries" className="bg-primary  rounded-2xl"  />
+              <StatCard icon={<MapPin className="h-8 w-8 text-white" />} value={TOTAL_POPULATION} label="Population" className="bg-accent  rounded-2xl" />
+              <StatCard icon={<Users className="h-8 w-8 text-white" />} value={TOTAL_LANGUAGES} label="Languages" className="bg-primary  rounded-2xl" />
+              <StatCard icon={<Award className="h-8 w-8 text-accent-foreground" />} value={TOTAL_CURRENCIES} label="Currencies" className="bg-accent  rounded-2xl" />
             </div>
           </div>
         </section>
@@ -148,7 +148,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="rounded-2xl py-24 bg-gradient-hero relative overflow-hidden">
+        <section className="bg-gradient-ocean rounded-2xl py-24 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 w-40 h-40 border border-white/20 rounded-full animate-pulse" />
             <div className="absolute bottom-10 right-10 w-32 h-32 border border-white/20 rounded-full animate-pulse delay-500" />

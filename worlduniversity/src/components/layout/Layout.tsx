@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-green-600">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-teal-600 to-green-700">
       <Header />
       <main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
         {children}

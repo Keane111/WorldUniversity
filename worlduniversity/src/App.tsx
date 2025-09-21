@@ -11,9 +11,6 @@ import CountryDetail from '@/pages/CountryDetail'
 import CountryFilter from '@/pages/CountryFilter'
 import About from '@/pages/About'
 import NotFound from '@/pages/NotFound'
-import TestPage from '@/pages/TestPage'
-
-import TestComponent from '@/components/TestComponent'
 
 const queryClient = new QueryClient();
 
@@ -23,12 +20,12 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <TooltipProvider>
-            <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-green-600">
+            <div className="min-h-screen bg-gradient-to-br from-blue-600 via-teal-600 to-green-700">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/search" element={<CountrySearch />} />
                 <Route path="/filter" element={<CountryFilter />} />
-                <Route path="/country/:code" element={<CountryDetail />} />
+                <Route path="/country/:name" element={<CountryDetail />} />
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

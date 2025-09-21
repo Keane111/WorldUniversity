@@ -27,14 +27,22 @@ const CountryDetail = () => {
         setLoading(true);
         setError(null);
         const countryName = (name as string).replace(/-/g, " ");
-        const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=false`);
+        
+        const response = await fetch(
+          `https://restcountries.com/v3.1/name/${encodeURIComponent(countryName)}?fullText=false&fields=name,flags,population,region,subregion,capital,area,borders,currencies,languages,timezones,continents,maps,coatOfArms,car,demonyms,gini,independent,unMember,landlocked,cca3,cca2,cioc,status`
+        );
 
         if (!response.ok) {
-          throw new Error("Country not found");
+          throw new Error(`Country not found (HTTP ${response.status})`);
         }
 
         const data = await response.json();
-        setCountry(data[0]);
+        
+        if (data && data.length > 0) {
+          setCountry(data[0]);
+        } else {
+          throw new Error("No country data found");
+        }
       } catch (error) {
         console.error("Error fetching country details:", error);
         setError("Failed to load country details");

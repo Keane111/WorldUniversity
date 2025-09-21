@@ -35,13 +35,13 @@ const CountryCard = ({ country, className }: CountryCardProps) => {
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
         
         <CardContent className="p-6">
           <div className="space-y-4">
             <div>
-              <h3 className="font-bold text-xl leading-tight line-clamp-1 text-blue-700 group-hover:text-blue-600 transition-colors">
+              <h3 className="font-bold text-xl leading-tight line-clamp-1 text-teal-700 group-hover:text-teal-600 transition-colors">
                 {country.name.common}
               </h3>
               <p className="text-sm text-blue-500 line-clamp-1 mt-1">
