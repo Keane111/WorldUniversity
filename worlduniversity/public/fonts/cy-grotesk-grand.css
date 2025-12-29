@@ -1,0 +1,27 @@
+/* Cy Grotesk Grand Font */
+/* Note: This is a placeholder. You need to add the actual font files (.woff2, .woff, .ttf) to the /public/fonts/ directory */
+/* Then update the src paths below to match your font file names */
+
+@font-face {
+  font-family: 'Cy Grotesk Grand';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./cy-grotesk-grand-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cy Grotesk Grand';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./cy-grotesk-grand-bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cy Grotesk Grand';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('./cy-grotesk-grand-black.woff2') format('woff2');
+}

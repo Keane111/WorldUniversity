@@ -134,7 +134,7 @@ const CountryDetail = () => {
 
 
         <div className="mb-6">
-          <Button variant="outline" asChild>
+          <Button variant="outline" asChild className="text-black">
             <Link to="/search">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Search
@@ -148,19 +148,19 @@ const CountryDetail = () => {
         <div className="grid lg:grid-cols-3 gap-8 mb-8">
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
+              <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-teal-600 to-green-700 bg-clip-text text-transparent">
                 {country.name.common}
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-black">
                 {country.name.official}
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
-                <Badge variant="secondary">{country.region}</Badge>
+                <Badge variant="secondary" className="text-black text-lg px-6 py-2">{country.region}</Badge>
                 {country.subregion && (
-                  <Badge variant="outline">{country.subregion}</Badge>
+                  <Badge variant="outline" className="text-black text-lg px-6 py-2">{country.subregion}</Badge>
                 )}
                 {country.independent && (
-                  <Badge className="bg-green-500 text-white">Independent</Badge>
+                  <Badge className="bg-green-500 text-white text-lg px-6 py-2">Independent</Badge>
                 )}
               </div>
             </div>
@@ -179,75 +179,75 @@ const CountryDetail = () => {
 
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <Card className="shadow-md">
+          <Card className="shadow-md bg-white border-4 border-black rounded-none">
             <CardHeader className="pb-3">
-              <CardTitle className="flex items-center space-x-2 text-lg">
-                <MapPin className="h-5 w-5 text-primary" />
+              <CardTitle className="flex items-center space-x-2 text-lg text-black">
+                <MapPin className="h-5 w-5 text-black" />
                 <span>Capital & Location</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               {country.capital && (
                 <div>
-                  <p className="text-sm text-muted-foreground">Capital</p>
-                  <p className="font-semibold">{country.capital.join(", ")}</p>
+                  <p className="text-sm text-gray-600">Capital</p>
+                  <p className="font-semibold text-black">{country.capital.join(", ")}</p>
                 </div>
               )}
               <div>
-                <p className="text-sm text-muted-foreground">Region</p>
-                <p className="font-semibold">{country.region}</p>
+                <p className="text-sm text-gray-600">Region</p>
+                <p className="font-semibold text-black">{country.region}</p>
               </div>
               {country.subregion && (
                 <div>
-                  <p className="text-sm text-muted-foreground">Subregion</p>
-                  <p className="font-semibold">{country.subregion}</p>
+                  <p className="text-sm text-gray-600">Subregion</p>
+                  <p className="font-semibold text-black">{country.subregion}</p>
                 </div>
               )}
             </CardContent>
           </Card>
 
-          <Card className="shadow-md">
+          <Card className="shadow-md bg-white border-4 border-black rounded-none">
             <CardHeader className="pb-3">
-              <CardTitle className="flex items-center space-x-2 text-lg">
-                <Users className="h-5 w-5 text-primary" />
+              <CardTitle className="flex items-center space-x-2 text-lg text-black">
+                <Users className="h-5 w-5 text-black" />
                 <span>Demographics</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <p className="text-sm text-muted-foreground">Population</p>
-                <p className="font-semibold">{formatPopulation(country.population)}</p>
+                <p className="text-sm text-gray-600">Population</p>
+                <p className="font-semibold text-black">{formatPopulation(country.population)}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Area</p>
-                <p className="font-semibold">{formatArea(country.area)}</p>
+                <p className="text-sm text-gray-600">Area</p>
+                <p className="font-semibold text-black">{formatArea(country.area)}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Landlocked</p>
-                <p className="font-semibold">{country.landlocked ? "Yes" : "No"}</p>
+                <p className="text-sm text-gray-600">Landlocked</p>
+                <p className="font-semibold text-black">{country.landlocked ? "Yes" : "No"}</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="shadow-md">
+          <Card className="shadow-md bg-white border-4 border-black rounded-none">
             <CardHeader className="pb-3">
-              <CardTitle className="flex items-center space-x-2 text-lg">
-                <Landmark className="h-5 w-5 text-primary" />
+              <CardTitle className="flex items-center space-x-2 text-lg text-black">
+                <Landmark className="h-5 w-5 text-black" />
                 <span>Government</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <p className="text-sm text-muted-foreground">Status</p>
-                <p className="font-semibold capitalize">{country.status.replace("-", " ")}</p>
+                <p className="text-sm text-gray-600">Status</p>
+                <p className="font-semibold text-black capitalize">{country.status.replace("-", " ")}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">UN Member</p>
-                <p className="font-semibold">{country.unMember ? "Yes" : "No"}</p>
+                <p className="text-sm text-gray-600">UN Member</p>
+                <p className="font-semibold text-black">{country.unMember ? "Yes" : "No"}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Independent</p>
-                <p className="font-semibold">{country.independent ? "Yes" : "No"}</p>
+                <p className="text-sm text-gray-600">Independent</p>
+                <p className="font-semibold text-black">{country.independent ? "Yes" : "No"}</p>
               </div>
             </CardContent>
           </Card>
@@ -256,10 +256,10 @@ const CountryDetail = () => {
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {country.currencies && (
-            <Card className="shadow-md">
+            <Card className="shadow-md bg-white border-4 border-black rounded-none">
               <CardHeader className="pb-3">
-                <CardTitle className="flex items-center space-x-2 text-lg">
-                  <DollarSign className="h-5 w-5 text-primary" />
+                <CardTitle className="flex items-center space-x-2 text-lg text-black">
+                  <DollarSign className="h-5 w-5 text-black" />
                   <span>Currencies</span>
                 </CardTitle>
               </CardHeader>
@@ -267,11 +267,11 @@ const CountryDetail = () => {
                 <div className="space-y-2">
                   {Object.entries(country.currencies).map(([code, currency]) => (
                     <div key={code} className="flex justify-between items-center">
-                      <span className="font-semibold">{currency.name}</span>
+                      <span className="font-semibold text-black">{currency.name}</span>
                       <div className="text-right">
-                        <Badge variant="outline">{code}</Badge>
+                        <Badge variant="outline" className="text-black border-black">{code}</Badge>
                         {currency.symbol && (
-                          <span className="ml-2 text-muted-foreground">{currency.symbol}</span>
+                          <span className="ml-2 text-gray-600">{currency.symbol}</span>
                         )}
                       </div>
                     </div>
@@ -282,17 +282,17 @@ const CountryDetail = () => {
           )}
 
           {country.languages && (
-            <Card className="shadow-md">
+            <Card className="shadow-md bg-white border-4 border-black rounded-none">
               <CardHeader className="pb-3">
-                <CardTitle className="flex items-center space-x-2 text-lg">
-                  <Languages className="h-5 w-5 text-primary" />
+                <CardTitle className="flex items-center space-x-2 text-lg text-black">
+                  <Languages className="h-5 w-5 text-black" />
                   <span>Languages</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {Object.values(country.languages).map((language) => (
-                    <Badge key={language} variant="secondary">
+                    <Badge key={language} variant="secondary" className="bg-gray-200 text-black">
                       {language}
                     </Badge>
                   ))}
@@ -303,16 +303,16 @@ const CountryDetail = () => {
         </div>
 
 
-        <Card className="shadow-md">
+        <Card className="shadow-md bg-white border-4 border-black rounded-none">
           <CardHeader className="pb-3">
-            <CardTitle className="flex items-center space-x-2 text-lg">
-              <Map className="h-5 w-5 text-primary" />
+            <CardTitle className="flex items-center space-x-2 text-lg text-black">
+              <Map className="h-5 w-5 text-black" />
               <span>Maps & Links</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-4">
-              <Button asChild variant="outline" className="h-auto p-4">
+              <Button asChild variant="outline" className="h-auto p-4 bg-white text-black hover:bg-gray-200">
                 <a 
                   href={country.maps.googleMaps} 
                   target="_blank" 
@@ -321,13 +321,13 @@ const CountryDetail = () => {
                 >
                   <div className="text-left">
                     <p className="font-semibold">Google Maps</p>
-                    <p className="text-sm text-muted-foreground">View on Google Maps</p>
+                    <p className="text-sm text-gray-600">View on Google Maps</p>
                   </div>
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </Button>
               
-              <Button asChild variant="outline" className="h-auto p-4">
+              <Button asChild variant="outline" className="h-auto p-4 bg-white text-black hover:bg-gray-200">
                 <a 
                   href={country.maps.openStreetMaps} 
                   target="_blank" 
@@ -336,7 +336,7 @@ const CountryDetail = () => {
                 >
                   <div className="text-left">
                     <p className="font-semibold">OpenStreetMap</p>
-                    <p className="text-sm text-muted-foreground">View on OpenStreetMap</p>
+                    <p className="text-sm text-gray-600">View on OpenStreetMap</p>
                   </div>
                   <ExternalLink className="h-4 w-4" />
                 </a>

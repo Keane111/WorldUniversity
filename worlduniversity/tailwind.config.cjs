@@ -1,8 +1,6 @@
-/** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
@@ -19,9 +17,6 @@ const config = {
           800: '#1E40AF',
           900: '#1E3A8A',
         }
-      },
-      fontFamily: {
-        'heading': ['"Outfit"', 'sans-serif'],
       }
     },
   },

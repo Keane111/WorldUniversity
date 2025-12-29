@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-blue-50;
+  }
+  
+  body {
+    @apply text-slate-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors;
+  }
+
+  .card {
+    @apply bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all;
+  }
+
+  .nav-link {
+    @apply text-blue-600 hover:text-blue-800 font-medium;
+  }
+}

@@ -20,7 +20,7 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <TooltipProvider>
-            <div className="min-h-screen bg-gradient-to-br from-blue-600 via-teal-600 to-green-700">
+            <div className="min-h-screen bg-white">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/search" element={<CountrySearch />} />

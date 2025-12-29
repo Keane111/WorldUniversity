@@ -115,26 +115,35 @@ const CountryFilter = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
-            <div className="relative">
-              <Filter className="h-12 w-12 text-primary" />
-              <div className="absolute inset-0 bg-gradient-ocean rounded-full opacity-20 blur-sm" />
+            <div className="relative inline-block">
+              <svg className="h-20 w-20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="globeGradientFilter" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: '#0d9488', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#15803d', stopOpacity: 1 }} />
+                  </linearGradient>
+                </defs>
+                <circle cx="12" cy="12" r="10" stroke="url(#globeGradientFilter)" strokeWidth="2" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="url(#globeGradientFilter)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-teal-600 to-green-700 bg-clip-text text-transparent font-heading">
             Filter Countries
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          </h2>
+          <p className="text-xl text-black max-w-2xl mx-auto">
             Filter pencarian negara secara spesifik dengan melihat dari benua, bahasa, dll.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-4 gap-6">
           <div className="lg:col-span-1">
-            <Card className="sticky top-24 shadow-card">
+            <Card className="sticky top-24 shadow-card bg-black border-4 border-black rounded-none">
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
+                <CardTitle className="flex items-center justify-between text-white">
                   <span className="flex items-center space-x-2">
-                    <Filter className="h-5 w-5 text-primary" />
+                    <Filter className="h-5 w-5 text-white" />
                     <span>Filters</span>
                   </span>
                   {hasActiveFilters && (
@@ -142,7 +151,7 @@ const CountryFilter = () => {
                       variant="ghost" 
                       size="sm" 
                       onClick={resetFilters}
-                      className="text-muted-foreground hover:text-foreground"
+                      className="text-gray-300 hover:text-white"
                     >
                       <RotateCcw className="h-4 w-4" />
                     </Button>
@@ -151,7 +160,7 @@ const CountryFilter = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="region">Region</Label>
+                  <Label htmlFor="region" className="text-white">Region</Label>
                   <Select value={selectedRegion} onValueChange={setSelectedRegion}>
                     <SelectTrigger id="region">
                       <SelectValue placeholder="Select region" />
@@ -168,7 +177,7 @@ const CountryFilter = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="subregion">Subregion</Label>
+                  <Label htmlFor="subregion" className="text-white">Subregion</Label>
                   <Select value={selectedSubregion} onValueChange={setSelectedSubregion}>
                     <SelectTrigger id="subregion">
                       <SelectValue placeholder="Select subregion" />
@@ -185,7 +194,7 @@ const CountryFilter = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="language">Language</Label>
+                  <Label htmlFor="language" className="text-white">Language</Label>
                   <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
                     <SelectTrigger id="language">
                       <SelectValue placeholder="Select language" />
@@ -208,7 +217,7 @@ const CountryFilter = () => {
                       checked={independentOnly}
                       onCheckedChange={(checked) => setIndependentOnly(checked === true)}
                     />
-                    <Label htmlFor="independent" className="text-sm font-medium">
+                    <Label htmlFor="independent" className="text-sm font-medium text-white">
                       Independent countries only
                     </Label>
                   </div>
@@ -219,14 +228,14 @@ const CountryFilter = () => {
                       checked={unMemberOnly}
                       onCheckedChange={(checked) => setUnMemberOnly(checked === true)}
                     />
-                    <Label htmlFor="unMember" className="text-sm font-medium">
+                    <Label htmlFor="unMember" className="text-sm font-medium text-white">
                       UN members only
                     </Label>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t">
-                  <p className="text-sm text-muted-foreground">
+                <div className="pt-4 border-t border-gray-700">
+                  <p className="text-sm text-white">
                     {filteredCountries.length} countries found
                   </p>
                 </div>

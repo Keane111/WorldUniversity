@@ -6,15 +6,18 @@ import { Globe, Target, Users, Heart, Code, Database, Palette } from "lucide-rea
 const About = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-16">
+      <div className="relative -mx-4 -my-8 w-screen" style={{ minHeight: '100vh', marginLeft: 'calc(-50vw + 50%)' }}>
+        <div className="absolute inset-0 bg-black/70 z-0" />
+        <div className="absolute inset-0 z-0" style={{ backgroundImage: 'url(/img/about.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="relative z-10 container mx-auto px-4 py-8">
+          <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
             <div className="relative">
               <Globe className="h-16 w-16 text-primary animate-pulse" />
               <div className="absolute inset-0 bg-gradient-ocean rounded-full opacity-20 blur-xl" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
             About WorldUniversity
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -72,6 +75,7 @@ const About = () => {
             </a>
             , yang didapatkan dari BNCC.
           </p>
+        </div>
         </div>
       </div>
     </Layout>

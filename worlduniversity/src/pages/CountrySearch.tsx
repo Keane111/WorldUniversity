@@ -56,22 +56,31 @@ const CountrySearch = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
-            <div className="relative">
-              <Globe className="h-12 w-12 text-primary" />
-              <div className="absolute inset-0 bg-gradient-ocean rounded-full opacity-20 blur-sm" />
+            <div className="relative inline-block">
+              <svg className="h-20 w-20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="globeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: '#0d9488', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#15803d', stopOpacity: 1 }} />
+                  </linearGradient>
+                </defs>
+                <circle cx="12" cy="12" r="10" stroke="url(#globeGradient)" strokeWidth="2" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="url(#globeGradient)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-teal-600 to-green-700 bg-clip-text text-transparent font-heading">
             Search Countries
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          </h2>
+          <p className="text-xl bg-gradient-to-r from-blue-600 via-teal-600 to-green-700 bg-clip-text text-transparent max-w-2xl mx-auto">
             Carilah negara dari nama, ibu kota, atau daerah mereka.
           </p>
         </div>
 
         <Card className="mb-8 shadow-card">
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
+            <CardTitle className="flex items-center space-x-2 text-black">
               <Search className="h-5 w-5 text-primary" />
               <span>Search Countries</span>
             </CardTitle>
